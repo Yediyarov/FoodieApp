@@ -22,7 +22,7 @@ struct RestaurantListView: View {
     var body: some View {
         List {
             ForEach(restaurantNames.indices, id: \.self) { index in
-                BasicTextImageRow(imageName: restaurantImages[index], name: restaurantNames[index], type: restaurantTypes[index], location: restaurantLocations[index], isFavorite: $restaurantIsFavorites[index])
+                FullImageRow(imageName: restaurantImages[index], name: restaurantNames[index], type: restaurantTypes[index], location: restaurantLocations[index], isFavorite: $restaurantIsFavorites[index])
             }
             
             .listRowSeparator(.hidden)
@@ -96,7 +96,12 @@ struct FullImageRow: View {
     var type: String
     var location: String
     
+    @State private var showOptions = false
+    @State private var showError = false
+    @Binding var isFavorite: Bool
+    
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 10) {
             Image(imageName)
                 .resizable()
@@ -104,19 +109,49 @@ struct FullImageRow: View {
                 .frame(height: 200)
                 .cornerRadius(20)
             
-            VStack(alignment: .leading) {
-                Text(name)
-                    .font(.system(.title2, design: .rounded))
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text(name)
+                        .font(.system(.title2, design: .rounded))
+                        
+                    Text(type)
+                        .font(.system(.body, design: .rounded))
                     
-                Text(type)
-                    .font(.system(.body, design: .rounded))
+                    Text(location)
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(.gray)
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
                 
-                Text(location)
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.gray)
+                if isFavorite {
+                    Spacer()
+                    
+                    VStack(){
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.yellow)
+                    }
+                    .padding(.horizontal)
+                }
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+        }
+        .onTapGesture {
+            showOptions.toggle()
+        }
+        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible) {
+            
+            Button("Reserve a table") {
+                self.showError.toggle()
+            }
+            
+            Button("Mark as favorite") {
+                self.isFavorite.toggle()
+            }
+        }
+        .alert("Not yet available", isPresented: $showError) {
+            Button("OK") {}
+        } message: {
+            Text("Sorry, this feature is not available yet. Please retry later.")
         }
     }
 }
@@ -133,7 +168,8 @@ struct RestaurantListView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
             .previewDisplayName("BasicTextImageRow")
                 
-        FullImageRow(imageName: "cafedeadend", name: "Cafe Deadend", type: "Cafe", location: "Hong Kong")
+        FullImageRow(imageName: "cafedeadend", name: "Cafe Deadend", type: "Cafe", location: "Hong Kong",
+            isFavorite: .constant(true))
             .previewLayout(.sizeThatFits)
             .previewDisplayName("FullImageRow")
     }
