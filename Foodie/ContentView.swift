@@ -77,8 +77,14 @@ struct BasicTextImageRow: View {
                 self.showError.toggle()
             }
             
-            Button("Mark as favorite") {
-                self.isFavorite.toggle()
+            if isFavorite {
+                Button("Remove from favorites") {
+                    self.isFavorite.toggle()
+                }
+            }else {
+                Button("Mark as favorite") {
+                    self.isFavorite.toggle()
+                }
             }
         }
         .alert("Not yet available", isPresented: $showError) {
@@ -144,8 +150,14 @@ struct FullImageRow: View {
                 self.showError.toggle()
             }
             
-            Button("Mark as favorite") {
-                self.isFavorite.toggle()
+            if isFavorite {
+                Button("Remove from favorites") {
+                    self.isFavorite.toggle()
+                }
+            }else {
+                Button("Mark as favorite") {
+                    self.isFavorite.toggle()
+                }
             }
         }
         .alert("Not yet available", isPresented: $showError) {
