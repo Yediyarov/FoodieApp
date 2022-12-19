@@ -37,7 +37,7 @@ struct RestaurantListView: View {
     var body: some View {
         List {
             ForEach(restaurants.indices, id: \.self) { index in
-                FullImageRow(imageName: restaurants[index].image, name: restaurants[index].name, type: restaurants[index].type, location: restaurants[index].location, isFavorite: $restaurants[index].isFavorite)
+                FullImageRow(restaurant: $restaurants[index])
             }
             
             .listRowSeparator(.hidden)
@@ -48,35 +48,31 @@ struct RestaurantListView: View {
 
 struct BasicTextImageRow: View {
     
-    var imageName: String
-    var name: String
-    var type: String
-    var location: String
+    @Binding var restaurant: Restaurant
     
     @State private var showOptions = false
     @State private var showError = false
-    @Binding var isFavorite: Bool
     
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
-            Image(imageName)
+            Image(restaurant.image)
                 .resizable()
                 .frame(width: 120, height: 118)
                 .cornerRadius(20)
             
             VStack(alignment: .leading) {
-                Text(name)
+                Text(restaurant.name)
                     .font(.system(.title2, design: .rounded))
                 
-                Text(type)
+                Text(restaurant.type)
                     .font(.system(.body, design: .rounded))
                 
-                Text(location)
+                Text(restaurant.location)
                     .font(.system(.subheadline, design: .rounded))
                     .foregroundColor(.gray)
             }
             
-            if isFavorite {
+            if restaurant.isFavorite {
                 Spacer()
                 
                 Image(systemName: "heart.fill")
@@ -92,13 +88,13 @@ struct BasicTextImageRow: View {
                 self.showError.toggle()
             }
             
-            if isFavorite {
+            if restaurant.isFavorite {
                 Button("Remove from favorites") {
-                    self.isFavorite.toggle()
+                    self.restaurant.isFavorite.toggle()
                 }
             }else {
                 Button("Mark as favorite") {
-                    self.isFavorite.toggle()
+                    self.restaurant.isFavorite.toggle()
                 }
             }
         }
@@ -112,19 +108,15 @@ struct BasicTextImageRow: View {
 
 struct FullImageRow: View {
     
-    var imageName: String
-    var name: String
-    var type: String
-    var location: String
+    @Binding var restaurant: Restaurant
     
     @State private var showOptions = false
     @State private var showError = false
-    @Binding var isFavorite: Bool
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 10) {
-            Image(imageName)
+            Image(restaurant.image)
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -132,20 +124,20 @@ struct FullImageRow: View {
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text(name)
+                    Text(restaurant.name)
                         .font(.system(.title2, design: .rounded))
                         
-                    Text(type)
+                    Text(restaurant.type)
                         .font(.system(.body, design: .rounded))
                     
-                    Text(location)
+                    Text(restaurant.location)
                         .font(.system(.subheadline, design: .rounded))
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                if isFavorite {
+                if restaurant.isFavorite {
                     Spacer()
                     
                     VStack(){
@@ -165,13 +157,13 @@ struct FullImageRow: View {
                 self.showError.toggle()
             }
             
-            if isFavorite {
+            if restaurant.isFavorite {
                 Button("Remove from favorites") {
-                    self.isFavorite.toggle()
+                    self.restaurant.isFavorite.toggle()
                 }
             }else {
                 Button("Mark as favorite") {
-                    self.isFavorite.toggle()
+                    self.restaurant.isFavorite.toggle()
                 }
             }
         }
@@ -191,12 +183,11 @@ struct RestaurantListView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
             .previewDisplayName("Restaurant List View (Dark)")
         
-        BasicTextImageRow(imageName: "cafedeadend", name: "Cafe Deadend", type: "Cafe", location: "Hong Kong", isFavorite: .constant(true))
+        BasicTextImageRow(restaurant: .constant(Restaurant(name: "Cafe Deadend", type: "Cafe", location: "Hong Kong", image: "cafedeadend", isFavorite: true)))
             .previewLayout(.sizeThatFits)
             .previewDisplayName("BasicTextImageRow")
                 
-        FullImageRow(imageName: "cafedeadend", name: "Cafe Deadend", type: "Cafe", location: "Hong Kong",
-            isFavorite: .constant(true))
+        FullImageRow(restaurant: .constant(Restaurant(name: "Cafe Deadend", type: "Cafe", location: "Hong Kong", image: "cafedeadend", isFavorite: true)))
             .previewLayout(.sizeThatFits)
             .previewDisplayName("FullImageRow")
     }
