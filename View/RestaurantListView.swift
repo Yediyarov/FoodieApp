@@ -48,7 +48,11 @@ struct RestaurantListView: View {
 
 struct BasicTextImageRow: View {
     
+    // MARK: - Binding
+    
     @Binding var restaurant: Restaurant
+    
+    // MARK: - State variables
     
     @State private var showOptions = false
     @State private var showError = false
@@ -108,8 +112,12 @@ struct BasicTextImageRow: View {
 
 struct FullImageRow: View {
     
+    // MARK: - Binding
+
     @Binding var restaurant: Restaurant
-    
+
+    // MARK: - State variables
+
     @State private var showOptions = false
     @State private var showError = false
     
