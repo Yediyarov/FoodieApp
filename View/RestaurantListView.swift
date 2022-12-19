@@ -101,22 +101,22 @@ struct BasicTextImageRow: View {
                     .foregroundColor(.yellow)
             }
         }
-        .onTapGesture {
-            showOptions.toggle()
-        }
-        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible) {
-            
-            Button("Reserve a table") {
+        .contextMenu{
+            Button(action: {
                 self.showError.toggle()
+            }) {
+                HStack{
+                    Text("Reserve a table")
+                    Image(systemName: "phone")
+                }
             }
             
-            if restaurant.isFavorite {
-                Button("Remove from favorites") {
-                    self.restaurant.isFavorite.toggle()
-                }
-            }else {
-                Button("Mark as favorite") {
-                    self.restaurant.isFavorite.toggle()
+            Button(action: {
+                self.restaurant.isFavorite.toggle()
+            }) {
+                HStack{
+                    Text(restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite")
+                    Image(systemName: "heart")
                 }
             }
         }
