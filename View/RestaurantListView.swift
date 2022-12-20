@@ -69,6 +69,7 @@ struct RestaurantListView: View {
             .navigationTitle("Foodie")
             .navigationBarTitleDisplayMode(.automatic)
         }
+        .accentColor(.white)
     }
 }
 
