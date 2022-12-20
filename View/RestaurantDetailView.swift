@@ -9,6 +9,15 @@ import SwiftUI
 
 struct RestaurantDetailView: View {
     
+    /* The dismiss environment value was first introduced in iOS 15. If your app supports lower version of iOS, you can replace it with presentationMode :
+        
+        @Environment(\.presentationMode) var presentationMode
+        
+        And, you can call the dismiss() like this:
+        
+        presentationMode.wrappedValue.dismiss()
+     */
+   
     @Environment(\.dismiss) var dismiss
     
     var restaurant: Restaurant
