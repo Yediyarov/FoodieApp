@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RestaurantDetailView: View {
     
+    @Environment(\.dismiss) var dismiss
+    
     var restaurant: Restaurant
     
     var body: some View {
@@ -36,6 +38,16 @@ struct RestaurantDetailView: View {
                     .foregroundColor(.white)
                 }
             
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarLeading){
+                Button(action: {
+                    dismiss()
+                }){
+                    Text("\(Image(systemName: "chevron.left")) \(restaurant.name)")
+                }
+            }
         }
     }
 }
