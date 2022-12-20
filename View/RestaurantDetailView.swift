@@ -12,7 +12,11 @@ struct RestaurantDetailView: View {
     var restaurant: Restaurant
     
     var body: some View {
-        Text("Some text")
+        Image(restaurant.image)
+            .resizable()
+            .scaledToFill()
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .ignoresSafeArea()
     }
 }
 
