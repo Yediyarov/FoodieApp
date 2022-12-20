@@ -38,7 +38,10 @@ struct RestaurantListView: View {
         NavigationStack {
             List {
                 ForEach(restaurants.indices, id: \.self) { index in
-                    BasicTextImageRow(restaurant: $restaurants[index])
+                    NavigationLink(destination:
+                        RestaurantDetailView(restaurant: restaurants[index])) {
+                            BasicTextImageRow(restaurant: $restaurants[index])
+                        }
                         .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
                             Button{
                                 
