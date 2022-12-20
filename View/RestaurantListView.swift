@@ -198,22 +198,31 @@ struct FullImageRow: View {
                 }
             }
         }
-        .onTapGesture {
-            showOptions.toggle()
-        }
-        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible) {
-            
-            Button("Reserve a table") {
+        .contextMenu{
+            Button(action: {
                 self.showError.toggle()
+            }) {
+                HStack{
+                    Text("Reserve a table")
+                    Image(systemName: "phone")
+                }
             }
             
-            if restaurant.isFavorite {
-                Button("Remove from favorites") {
-                    self.restaurant.isFavorite.toggle()
+            Button(action: {
+                self.restaurant.isFavorite.toggle()
+            }) {
+                HStack{
+                    Text(restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite")
+                    Image(systemName: "heart")
                 }
-            }else {
-                Button("Mark as favorite") {
-                    self.restaurant.isFavorite.toggle()
+            }
+            
+            Button(action: {
+                self.showOptions.toggle()
+            }){
+                HStack{
+                    Text("Share")
+                    Image(systemName: "square.and.arrow.up")
                 }
             }
         }
@@ -221,6 +230,16 @@ struct FullImageRow: View {
             Button("OK") {}
         } message: {
             Text("Sorry, this feature is not available yet. Please retry later.")
+        }
+        .sheet(isPresented: $showOptions) {
+            
+            let defaultText = "Just checking in at \(restaurant.name)"
+            
+            if let imageToShare = UIImage(named: restaurant.image) {
+                ActivityView(activityItems: [defaultText, imageToShare])
+            } else {
+                ActivityView(activityItems: [defaultText])
+            }
         }
     }
 }
