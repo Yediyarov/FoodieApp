@@ -12,11 +12,31 @@ struct RestaurantDetailView: View {
     var restaurant: Restaurant
     
     var body: some View {
-        Image(restaurant.image)
-            .resizable()
-            .scaledToFill()
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .ignoresSafeArea()
+        
+        ZStack(alignment: .top) {
+            
+            Image(restaurant.image)
+                .resizable()
+                .scaledToFill()
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .ignoresSafeArea()
+            
+            Color.black
+                .frame(height:100)
+                .opacity(0.8)
+                .cornerRadius(20)
+                .padding()
+                .overlay{
+                    VStack(spacing: 5){
+                        Text(restaurant.name)
+                        Text(restaurant.type)
+                        Text(restaurant.location)
+                    }
+                    .font(.system(.headline, design: .rounded))
+                    .foregroundColor(.white)
+                }
+            
+        }
     }
 }
 
