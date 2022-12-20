@@ -13,6 +13,7 @@
 		F0208C5E294B3E8F007DE7B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0208C5D294B3E8F007DE7B3 /* Preview Assets.xcassets */; };
 		F0208C65294CA0F6007DE7B3 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C64294CA0F6007DE7B3 /* Restaurant.swift */; };
 		F0208C692950AC44007DE7B3 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C682950AC44007DE7B3 /* ActivityView.swift */; };
+		F0208C6B2951ED99007DE7B3 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		F0208C5D294B3E8F007DE7B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0208C64294CA0F6007DE7B3 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		F0208C682950AC44007DE7B3 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				F0208C682950AC44007DE7B3 /* ActivityView.swift */,
 				F0208C58294B3E8C007DE7B3 /* RestaurantListView.swift */,
+				F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0208C59294B3E8C007DE7B3 /* RestaurantListView.swift in Sources */,
+				F0208C6B2951ED99007DE7B3 /* RestaurantDetailView.swift in Sources */,
 				F0208C692950AC44007DE7B3 /* ActivityView.swift in Sources */,
 				F0208C57294B3E8C007DE7B3 /* FoodieApp.swift in Sources */,
 				F0208C65294CA0F6007DE7B3 /* Restaurant.swift in Sources */,
