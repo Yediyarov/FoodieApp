@@ -25,6 +25,8 @@
 		F0208C64294CA0F6007DE7B3 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		F0208C682950AC44007DE7B3 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
+		F0208C6E2952FDBF007DE7B3 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		F0208C6F2952FDBF007DE7B3 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 		F0208C4A294B3E8C007DE7B3 = {
 			isa = PBXGroup;
 			children = (
+				F0208C6C2952FCEF007DE7B3 /* Resources */,
 				F0208C6729507ED0007DE7B3 /* Model */,
 				F0208C6629507EC4007DE7B3 /* View */,
 				F0208C55294B3E8C007DE7B3 /* Foodie */,
@@ -90,6 +93,23 @@
 				F0208C64294CA0F6007DE7B3 /* Restaurant.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F0208C6C2952FCEF007DE7B3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F0208C6D2952FD0A007DE7B3 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F0208C6D2952FD0A007DE7B3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F0208C6F2952FDBF007DE7B3 /* Nunito-Bold.ttf */,
+				F0208C6E2952FDBF007DE7B3 /* Nunito-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
