@@ -14,6 +14,7 @@
 		F0208C65294CA0F6007DE7B3 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C64294CA0F6007DE7B3 /* Restaurant.swift */; };
 		F0208C692950AC44007DE7B3 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C682950AC44007DE7B3 /* ActivityView.swift */; };
 		F0208C6B2951ED99007DE7B3 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */; };
+		F0208C7329531DF1007DE7B3 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7229531DF1007DE7B3 /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F0208C6E2952FDBF007DE7B3 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		F0208C6F2952FDBF007DE7B3 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		F0208C702952FEE1007DE7B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F0208C7229531DF1007DE7B3 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,7 @@
 		F0208C4A294B3E8C007DE7B3 = {
 			isa = PBXGroup;
 			children = (
+				F0208C7129531DCF007DE7B3 /* Extensions */,
 				F0208C6C2952FCEF007DE7B3 /* Resources */,
 				F0208C6729507ED0007DE7B3 /* Model */,
 				F0208C6629507EC4007DE7B3 /* View */,
@@ -112,6 +115,14 @@
 				F0208C6E2952FDBF007DE7B3 /* Nunito-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F0208C7129531DCF007DE7B3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F0208C7229531DF1007DE7B3 /* UIColor+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +198,7 @@
 				F0208C59294B3E8C007DE7B3 /* RestaurantListView.swift in Sources */,
 				F0208C6B2951ED99007DE7B3 /* RestaurantDetailView.swift in Sources */,
 				F0208C692950AC44007DE7B3 /* ActivityView.swift in Sources */,
+				F0208C7329531DF1007DE7B3 /* UIColor+Ext.swift in Sources */,
 				F0208C57294B3E8C007DE7B3 /* FoodieApp.swift in Sources */,
 				F0208C65294CA0F6007DE7B3 /* Restaurant.swift in Sources */,
 			);
