@@ -15,6 +15,7 @@
 		F0208C692950AC44007DE7B3 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C682950AC44007DE7B3 /* ActivityView.swift */; };
 		F0208C6B2951ED99007DE7B3 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */; };
 		F0208C7329531DF1007DE7B3 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7229531DF1007DE7B3 /* UIColor+Ext.swift */; };
+		F0208C75295335D2007DE7B3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C74295335D2007DE7B3 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F0208C6F2952FDBF007DE7B3 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		F0208C702952FEE1007DE7B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F0208C7229531DF1007DE7B3 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		F0208C74295335D2007DE7B3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				F0208C682950AC44007DE7B3 /* ActivityView.swift */,
 				F0208C58294B3E8C007DE7B3 /* RestaurantListView.swift */,
 				F0208C6A2951ED99007DE7B3 /* RestaurantDetailView.swift */,
+				F0208C74295335D2007DE7B3 /* MapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0208C75295335D2007DE7B3 /* MapView.swift in Sources */,
 				F0208C59294B3E8C007DE7B3 /* RestaurantListView.swift in Sources */,
 				F0208C6B2951ED99007DE7B3 /* RestaurantDetailView.swift in Sources */,
 				F0208C692950AC44007DE7B3 /* ActivityView.swift in Sources */,
