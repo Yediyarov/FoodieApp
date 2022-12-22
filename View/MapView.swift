@@ -38,7 +38,7 @@ struct MapView: View {
     
     
     var body: some View {
-        Map(coordinateRegion: $region, annotationItems: [annotatedItem])
+        Map(coordinateRegion: $region, interactionModes: [.all], annotationItems: [annotatedItem])
         { item in
             MapMarker(coordinate: item.coordinate, tint: .red)
         } .task {
