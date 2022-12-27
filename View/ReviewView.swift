@@ -10,6 +10,8 @@ import SwiftUI
 struct ReviewView: View {
     
     var restaurant: Restaurant
+    @Binding var isDisplayed: Bool
+
     
     var body: some View {
         ZStack{
@@ -28,7 +30,11 @@ struct ReviewView: View {
             HStack{
                 Spacer()
                 VStack{
-                    Button(action:{})
+                    Button(action:{
+                        withAnimation(.easeOut(duration: 0.3)) {
+                                self.isDisplayed = false
+                            }
+                    })
                     {
                         Image(systemName: "xmark")
                             .foregroundColor(.white)
@@ -64,7 +70,7 @@ struct ReviewView_Previews: PreviewProvider {
             phone: "350-233423",
             description: "A little gem hidden at the corner of the street is nothing but fantastic! This place is warm and cozy. We open at 7 every morning except Sunday, and close at 9 PM. We offer a variety of coffee drinks and specialties including lattes, cappuccinos, teas, and more. We serve breakfast, lunch, and dinner in an airy open setting. Come over, have a coffee and enjoy a chit-chat with our baristas.",
             image: "cafedeadend",
-            isFavorite: true)
+            isFavorite: true), isDisplayed: .constant(true)
         )
     }
 }
