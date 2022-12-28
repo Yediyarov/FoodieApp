@@ -23,6 +23,8 @@ struct NewRestaurantView: View {
     @State private var restaurantImage = UIImage(named: "newphoto")!
     @State private var showPhotoOptions = false
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         
         NavigationStack{
@@ -54,7 +56,24 @@ struct NewRestaurantView: View {
                 .padding()
             }
             .navigationTitle("New Restaurant")
+            .toolbar {
+                
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button(action: {
+                        dismiss()
+                    }){
+                        Image(systemName: "xmark")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Text("Save")
+                        .font(.headline)
+                        .foregroundColor(Color("NavigationBarTitle"))
+                }
+            }
         }
+        .accentColor(.primary)
         .fullScreenCover(item: $photoSource) { source in
             
             switch source {
