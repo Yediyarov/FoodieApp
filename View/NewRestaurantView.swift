@@ -55,6 +55,27 @@ struct NewRestaurantView: View {
             }
             .navigationTitle("New Restaurant")
         }
+        .fullScreenCover(item: $photoSource) { source in
+            
+            switch source {
+                case .photoLibrary: ImagePicker(sourceType: .photoLibrary, selectedImage: $restaurantImage).ignoresSafeArea()
+                case .camera: ImagePicker(sourceType: .camera, selectedImage: $restaurantImage).ignoresSafeArea()
+            }
+        }
+        .actionSheet(isPresented: $showPhotoOptions){
+            
+            ActionSheet(title: Text("Choose your photo source"),
+                        message: nil,
+                        buttons: [
+                            .default(Text("Camera")) {
+                                self.photoSource = .camera
+                                },
+                            .default(Text("Photo Library")) {
+                                self.photoSource = .photoLibrary
+                            },
+                            .cancel()
+                        ])
+        }
     }
 }
 
