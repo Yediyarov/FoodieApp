@@ -10,27 +10,51 @@ import SwiftUI
 
 struct NewRestaurantView: View {
     
+    enum PhotoSource: Identifiable {
+        case photoLibrary
+        case camera
+        var id: Int {
+            hashValue
+        }
+    }
+    
+    @State private var photoSource: PhotoSource?
     @State var restaurantName = ""
+    @State private var restaurantImage = UIImage(named: "newphoto")!
+    @State private var showPhotoOptions = false
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            Text("Name")
-                .font(.system(.headline, design: .rounded))
-                .foregroundColor(Color(.darkGray))
-            
-            TextField("Fill in the restaurant name", text: $restaurantName)
-                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                .padding(.horizontal)
-                .padding(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color(.systemGray5), lineWidth: 1)
-                    )
-            .padding(.vertical, 10)
+        NavigationStack{
+            ScrollView{
+                VStack{
+                    
+                    Image(uiImage: restaurantImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height: 200)
+                        .background(Color(.systemGray6))
+                        .clipShape(RoundedRectangle(cornerRadius: 20.0))
+                        .padding(.bottom)
+                        .onTapGesture {
+                            self.showPhotoOptions.toggle()
+                        }
+                    
+                    FormTextField(label: "Name", placeholder: "Fill in the restaurant name", value: .constant(""))
+                    
+                    FormTextField(label: "Type", placeholder: "Fill in the restaurant type", value: .constant(""))
+                    
+                    FormTextField(label: "Address", placeholder: "Fill in the restaurant address", value: .constant(""))
+                    
+                    FormTextField(label: "Phone", placeholder: "Fill in the restaurant phone", value: .constant(""))
+                    
+                    FormTextView(label: "Description", value: .constant(""), height: 100)
+                }
+                .padding()
+            }
+            .navigationTitle("New Restaurant")
         }
-                
     }
 }
 
