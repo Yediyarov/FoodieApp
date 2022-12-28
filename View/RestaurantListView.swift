@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct RestaurantListView: View {
+    
+    @State private var showNewRestaurant = false
+    
     @State var restaurants = [
         Restaurant(name: "Cafe Deadend", type: "Coffee & Tea Shop", location: "Hong Kong", phone: "341-233423",
                    description: "A little gem hidden at the corner of the street is nothing but fantastic! This place is warm and cozy. We open at 7 every morning except Sunday, and close at 9 PM. We offer a variety of coffee drinks and specialties including lattes, cappuccinos, teas, and more. We serve breakfast, lunch, and dinner in an airy open setting. Come over, have a coffee and enjoy a chit-chat with our baristas.", image: "cafedeadend", isFavorite: false),
@@ -93,8 +96,18 @@ struct RestaurantListView: View {
             
             .navigationTitle("Foodie")
             .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                Button(action: {
+                    self.showNewRestaurant = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            }
         }
-        .accentColor(.white)
+        .sheet(isPresented: $showNewRestaurant) {
+            NewRestaurantView()
+        }
+        .accentColor(.primary)
     }
 }
 
