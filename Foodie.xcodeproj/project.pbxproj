@@ -20,6 +20,7 @@
 		F0208C79295C60D7007DE7B3 /* NewRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C78295C60D7007DE7B3 /* NewRestaurantView.swift */; };
 		F0208C7C295C870C007DE7B3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7B295C870C007DE7B3 /* ImagePicker.swift */; };
 		F0208C7E295DA1F5007DE7B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7D295DA1F5007DE7B3 /* Persistence.swift */; };
+		F0208C81295DAA0C007DE7B3 /* Foodie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7F295DAA0C007DE7B3 /* Foodie.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F0208C78295C60D7007DE7B3 /* NewRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantView.swift; sourceTree = "<group>"; };
 		F0208C7B295C870C007DE7B3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F0208C7D295DA1F5007DE7B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		F0208C80295DAA0C007DE7B3 /* Foodie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foodie.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		F0208C4A294B3E8C007DE7B3 = {
 			isa = PBXGroup;
 			children = (
+				F0208C7F295DAA0C007DE7B3 /* Foodie.xcdatamodeld */,
 				F0208C7A295C86D1007DE7B3 /* Util */,
 				F0208C7129531DCF007DE7B3 /* Extensions */,
 				F0208C6C2952FCEF007DE7B3 /* Resources */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0208C7E295DA1F5007DE7B3 /* Persistence.swift in Sources */,
+				F0208C81295DAA0C007DE7B3 /* Foodie.xcdatamodeld in Sources */,
 				F0208C772954968E007DE7B3 /* ReviewView.swift in Sources */,
 				F0208C75295335D2007DE7B3 /* MapView.swift in Sources */,
 				F0208C59294B3E8C007DE7B3 /* RestaurantListView.swift in Sources */,
@@ -431,6 +435,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F0208C7F295DAA0C007DE7B3 /* Foodie.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F0208C80295DAA0C007DE7B3 /* Foodie.xcdatamodel */,
+			);
+			currentVersion = F0208C80295DAA0C007DE7B3 /* Foodie.xcdatamodel */;
+			path = Foodie.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F0208C4B294B3E8C007DE7B3 /* Project object */;
 }
