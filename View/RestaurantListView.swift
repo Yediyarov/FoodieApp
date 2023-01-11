@@ -10,6 +10,7 @@ import SwiftUI
 struct RestaurantListView: View {
     
     @State private var showNewRestaurant = false
+    @Environment(\.managedObjectContext) var context
     
     @FetchRequest(
         entity: Restaurant.entity(),
@@ -21,15 +22,20 @@ struct RestaurantListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(restaurants.indices, id: \.self) { index in
-                    ZStack(alignment: .leading) {
-                        NavigationLink(destination:
-                            RestaurantDetailView(restaurant: restaurants[index])) {
+                if(restaurants.count == 0){
+                    Image("emptydata")
+                        .resizable()
+                        .scaledToFit()
+                }else{
+                    ForEach(restaurants.indices, id: \.self) { index in
+                        ZStack(alignment: .leading) {
+                            NavigationLink(destination:
+                                            RestaurantDetailView(restaurant: restaurants[index])) {
                                 EmptyView()
                             }
-                        .opacity(0)
-                        BasicTextImageRow(restaurant: restaurants[index])
-                    }
+                                            .opacity(0)
+                            BasicTextImageRow(restaurant: restaurants[index])
+                        }
                         .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
                             Button{
                                 
@@ -45,12 +51,11 @@ struct RestaurantListView: View {
                             }
                             .tint(.orange)
                         })
+                    }
+                    .onDelete(perform: deleteRecord)
+                    
+                    .listRowSeparator(.hidden)
                 }
-                .onDelete(perform: { indexSet in
-                        restaurants.remove(atOffsets: indexSet)
-                })
-                
-                .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
             
@@ -69,6 +74,25 @@ struct RestaurantListView: View {
         }
         .accentColor(.primary)
     }
+    
+    private func deleteRecord(indexSet: IndexSet){
+        
+        for index in indexSet {
+            let itemToDelete = restaurants[index]
+            context.delete(itemToDelete)
+        }
+        
+        DispatchQueue.main.async {
+            do {
+                try context.save()
+            } catch {
+                print(error)
+            }
+        }
+        
+    }
+    
+    
 }
 
 struct BasicTextImageRow: View {
@@ -256,17 +280,16 @@ struct FullImageRow: View {
 struct RestaurantListView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantListView()
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         
         RestaurantListView()
-            .preferredColorScheme(.dark)
-            .previewDisplayName("Restaurant List View (Dark)")
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .preferredColorScheme(.dark)
+   
+        BasicTextImageRow(restaurant: (PersistenceController.testData?.first)!)
+            .previewLayout(.sizeThatFits)
         
-//        BasicTextImageRow(restaurant: .constant(Restaurant(name: "Cafe Deadend", type: "Cafe", location: "Hong Kong", phone: "123-123123", description: "Searching for great breakfast eateries and coffee? This place is for you. We open at 6:30 every morning, and close at 9 PM. We offer espresso and espresso based drink, such as capuccino, cafe latte, piccolo and many more. Come over and enjoy a great meal.", image: "cafedeadend", isFavorite: true)))
-//            .previewLayout(.sizeThatFits)
-//            .previewDisplayName("BasicTextImageRow")
-//                
-//        FullImageRow(restaurant: .constant(Restaurant(name: "Cafe Deadend", type: "Cafe", location: "Hong Kong", phone: "123-123123", description: "Searching for great breakfast eateries and coffee? This place is for you. We open at 6:30 every morning, and close at 9 PM. We offer espresso and espresso based drink, such as capuccino, cafe latte, piccolo and many more. Come over and enjoy a great meal.", image: "cafedeadend", isFavorite: true)))
-//            .previewLayout(.sizeThatFits)
-//            .previewDisplayName("FullImageRow")
+        FullImageRow(restaurant: (PersistenceController.testData?.first)!)
+            .previewLayout(.sizeThatFits)
     }
 }
