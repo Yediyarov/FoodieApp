@@ -69,6 +69,11 @@ struct RestaurantListView: View {
                 }
             }
         }
+        .onChange(of: searchText){
+            searchText in
+                let predicate = searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "name CONTAINS[c] %@", searchText)
+                restaurants.nsPredicate = predicate
+        }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         .sheet(isPresented: $showNewRestaurant) {
             NewRestaurantView()
