@@ -10,6 +10,9 @@ import SwiftUI
 
 struct NewRestaurantView: View {
     
+    @ObservedObject private var restaurantFormViewModel: RestaurantFormViewModel
+    @Environment(\.managedObjectContext) var context
+    
     enum PhotoSource: Identifiable {
         case photoLibrary
         case camera
@@ -20,10 +23,36 @@ struct NewRestaurantView: View {
     
     @State private var photoSource: PhotoSource?
     @State var restaurantName = ""
-    @State private var restaurantImage = UIImage(named: "newphoto")!
     @State private var showPhotoOptions = false
     
     @Environment(\.dismiss) var dismiss
+    
+    
+    init() {
+        let viewModel = RestaurantFormViewModel()
+        viewModel.image = UIImage(named: "newphoto")!
+        restaurantFormViewModel = viewModel
+    }
+    
+    private func save() {
+        
+        let restaurant = Restaurant(context: context)
+        
+        restaurant.name = restaurantFormViewModel.name
+        restaurant.type = restaurantFormViewModel.type
+        restaurant.location = restaurantFormViewModel.location
+        restaurant.phone = restaurantFormViewModel.phone
+        restaurant.image = restaurantFormViewModel.image.pngData()!
+        restaurant.summary = restaurantFormViewModel.description
+        restaurant.isFavorite = false
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save the record...")
+            print(error.localizedDescription)
+        }
+    }
     
     var body: some View {
         
@@ -31,7 +60,7 @@ struct NewRestaurantView: View {
             ScrollView{
                 VStack{
                     
-                    Image(uiImage: restaurantImage)
+                    Image(uiImage: restaurantFormViewModel.image)
                         .resizable()
                         .scaledToFill()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -43,15 +72,15 @@ struct NewRestaurantView: View {
                             self.showPhotoOptions.toggle()
                         }
                     
-                    FormTextField(label: "Name", placeholder: "Fill in the restaurant name", value: .constant(""))
+                    FormTextField(label: "Name", value: $restaurantFormViewModel.name)
                     
-                    FormTextField(label: "Type", placeholder: "Fill in the restaurant type", value: .constant(""))
+                    FormTextField(label: "Type", value: $restaurantFormViewModel.type)
                     
-                    FormTextField(label: "Address", placeholder: "Fill in the restaurant address", value: .constant(""))
+                    FormTextField(label: "Address", value: $restaurantFormViewModel.location)
                     
-                    FormTextField(label: "Phone", placeholder: "Fill in the restaurant phone", value: .constant(""))
+                    FormTextField(label: "Phone", value: $restaurantFormViewModel.phone)
                     
-                    FormTextView(label: "Description", value: .constant(""), height: 100)
+                    FormTextView(label: "Description", value: $restaurantFormViewModel.description, height: 100)
                 }
                 .padding()
             }
@@ -67,9 +96,14 @@ struct NewRestaurantView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Text("Save")
-                        .font(.headline)
-                        .foregroundColor(Color("NavigationBarTitle"))
+                    Button {
+                        save()
+                        dismiss()
+                    } label: {
+                        Text("Save")
+                            .font(.headline)
+                            .foregroundColor(Color("NavigationBarTitle"))
+                    }
                 }
             }
         }
@@ -77,8 +111,8 @@ struct NewRestaurantView: View {
         .fullScreenCover(item: $photoSource) { source in
             
             switch source {
-                case .photoLibrary: ImagePicker(sourceType: .photoLibrary, selectedImage: $restaurantImage).ignoresSafeArea()
-                case .camera: ImagePicker(sourceType: .camera, selectedImage: $restaurantImage).ignoresSafeArea()
+                case .photoLibrary: ImagePicker(sourceType: .photoLibrary, selectedImage: $restaurantFormViewModel.image).ignoresSafeArea()
+                case .camera: ImagePicker(sourceType: .camera, selectedImage: $restaurantFormViewModel.image).ignoresSafeArea()
             }
         }
         .actionSheet(isPresented: $showPhotoOptions){

@@ -21,6 +21,7 @@
 		F0208C7C295C870C007DE7B3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7B295C870C007DE7B3 /* ImagePicker.swift */; };
 		F0208C7E295DA1F5007DE7B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7D295DA1F5007DE7B3 /* Persistence.swift */; };
 		F0208C81295DAA0C007DE7B3 /* Foodie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0208C7F295DAA0C007DE7B3 /* Foodie.xcdatamodeld */; };
+		F03CC521296EF85B0069C5A4 /* RestaurantFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03CC520296EF85B0069C5A4 /* RestaurantFormViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F0208C7B295C870C007DE7B3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F0208C7D295DA1F5007DE7B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F0208C80295DAA0C007DE7B3 /* Foodie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foodie.xcdatamodel; sourceTree = "<group>"; };
+		F03CC520296EF85B0069C5A4 /* RestaurantFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		F0208C4A294B3E8C007DE7B3 = {
 			isa = PBXGroup;
 			children = (
+				F03CC51F296EF84A0069C5A4 /* ViewModel */,
 				F0208C7F295DAA0C007DE7B3 /* Foodie.xcdatamodeld */,
 				F0208C7A295C86D1007DE7B3 /* Util */,
 				F0208C7129531DCF007DE7B3 /* Extensions */,
@@ -151,6 +154,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		F03CC51F296EF84A0069C5A4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F03CC520296EF85B0069C5A4 /* RestaurantFormViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03CC521296EF85B0069C5A4 /* RestaurantFormViewModel.swift in Sources */,
 				F0208C7E295DA1F5007DE7B3 /* Persistence.swift in Sources */,
 				F0208C81295DAA0C007DE7B3 /* Foodie.xcdatamodeld in Sources */,
 				F0208C772954968E007DE7B3 /* ReviewView.swift in Sources */,
