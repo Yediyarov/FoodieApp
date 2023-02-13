@@ -21,7 +21,10 @@ struct RestaurantDetailView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showReview = false
     
-    var restaurant: Restaurant
+    @Environment(\.managedObjectContext) var context
+    
+    @ObservedObject var restaurant: Restaurant
+    
     
     var body: some View {
         
@@ -68,7 +71,7 @@ struct RestaurantDetailView: View {
                         ), value: restaurant.rating)
                     }
                 
-                Text(restaurant.description)
+                Text(restaurant.summary)
                     .padding()
                 
                 HStack(alignment: .top){
@@ -129,6 +132,13 @@ struct RestaurantDetailView: View {
             }
             : nil
         )
+        
+        .onChange(of: restaurant) { _ in
+            if self.context.hasChanges {
+                try? self.context.save()
+            }
+        }
+        
         .navigationBarBackButtonHidden(true)
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading){
