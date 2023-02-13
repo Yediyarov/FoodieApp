@@ -71,7 +71,7 @@ struct RestaurantListView: View {
         }
         .onChange(of: searchText){
             searchText in
-                let predicate = searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "name CONTAINS[c] %@", searchText)
+                let predicate = searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "location CONTAINS %@ OR name CONTAINS %@", searchText, searchText)
                 restaurants.nsPredicate = predicate
         }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
