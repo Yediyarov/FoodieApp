@@ -17,7 +17,7 @@ struct RestaurantListView: View {
         sortDescriptors: [])
     
     var restaurants: FetchedResults<Restaurant>
-    
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
@@ -69,6 +69,7 @@ struct RestaurantListView: View {
                 }
             }
         }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         .sheet(isPresented: $showNewRestaurant) {
             NewRestaurantView()
         }
