@@ -37,13 +37,6 @@ struct RestaurantDetailView: View {
                     .frame(height: 445)
                     .overlay{
                         VStack{
-                            Image(systemName: (restaurant.isFavorite ? "heart.fill" : "heart"))
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topTrailing)
-                                .foregroundColor((restaurant.isFavorite ? .yellow : .white))
-                                .padding()
-                                .padding(.top, 40)
-                                .font(.system(size: 30))
-                        }
                         
                         HStack(alignment: .bottom) {
                             VStack(alignment: .leading, spacing: 5){
@@ -68,7 +61,8 @@ struct RestaurantDetailView: View {
                             }
                         }
                         .animation(.spring(response: 0.2, dampingFraction: 0.3, blendDuration: 0.3
-                        ), value: restaurant.rating)
+                                          ), value: restaurant.rating)
+                        }
                     }
                 
                 Text(restaurant.summary)
@@ -141,12 +135,25 @@ struct RestaurantDetailView: View {
         
         .navigationBarBackButtonHidden(true)
         .toolbar{
+            
             ToolbarItem(placement: .navigationBarLeading){
                 Button(action: {
                     dismiss()
                 }){
                     Text("\(Image(systemName: "chevron.left"))")
                 }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    restaurant.isFavorite.toggle()
+                }) {
+                    Image(systemName: restaurant.isFavorite ? "heart.fill": "heart")
+                        .font(.system(size: 25))
+                        .foregroundColor(restaurant.isFavorite ? .yellow : .white)
+                        
+                }
+                .opacity(showReview ? 0 : 1)
             }
         }
     }
